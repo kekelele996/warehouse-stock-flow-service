@@ -1,4 +1,4 @@
-# warehouse-stock-flow-service
+# wmsflow__001
 
 ## 标准命令
 

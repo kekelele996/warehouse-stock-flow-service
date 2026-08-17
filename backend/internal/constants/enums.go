@@ -103,7 +103,7 @@ var InboundTransitions = map[string][]string{
 
 // OutboundTransitions 出库单状态机：key 为当前状态，value 为允许流转的下一个状态。
 var OutboundTransitions = map[string][]string{
-	OutboundStatusPending:   {OutboundStatusPicking},
+	OutboundStatusPending:   {OutboundStatusPicking, OutboundStatusChecking},
 	OutboundStatusPicking:   {OutboundStatusChecking},
 	OutboundStatusChecking:  {OutboundStatusPacking},
 	OutboundStatusPacking:   {OutboundStatusShipped},

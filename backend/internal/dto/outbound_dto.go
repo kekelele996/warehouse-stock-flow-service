@@ -87,7 +87,7 @@ func ToOutboundItemView(item *model.OutboundItem, productName, sku, binCode stri
 		BinLocationID: item.BinLocationID,
 		BinCode:       binCode,
 		ExpectedQty:   item.ExpectedQty,
-		ActualQty:     item.ActualQty,
+		ActualQty:     item.ExpectedQty,
 	}
 }
 

@@ -50,7 +50,7 @@ func OutboundStatusText(status string) string {
 	case constants.OutboundStatusPending:
 		return "待拣货"
 	case constants.OutboundStatusPicking:
-		return "拣货中"
+		return "复核中"
 	case constants.OutboundStatusChecking:
 		return "复核中"
 	case constants.OutboundStatusPacking:
