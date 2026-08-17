@@ -1,0 +1,33 @@
+package constants
+
+// 统一接口文案、日志文案与错误提示文案。供 handler/service/middleware 引用。
+const (
+	MsgOK                   = "ok"
+	MsgUnauthorized         = "未登录或登录已过期"
+	MsgForbidden            = "无权执行该操作"
+	MsgInvalidParams        = "请求参数校验失败"
+	MsgNotFound             = "资源不存在"
+	MsgInternalError        = "系统繁忙，请稍后重试"
+	MsgLoginSuccess         = "登录成功"
+	MsgRegisterSuccess      = "注册成功"
+	MsgOwnerCreated         = "货主创建成功"
+	MsgOwnerUpdated         = "货主信息更新成功"
+	MsgOwnerSuspended       = "已暂停与货主的合作"
+	MsgOwnerActivated       = "货主合作已恢复"
+	MsgProductCreated       = "商品创建成功"
+	MsgInboundCreated       = "入库单创建成功"
+	MsgInboundReceived      = "收货完成"
+	MsgInboundQCCompleted   = "质检完成"
+	MsgInboundShelved       = "上架完成"
+	MsgInboundCompleted     = "入库单已完成"
+	MsgOutboundCreated      = "出库单创建成功"
+	MsgOutboundPicked       = "拣货完成"
+	MsgOutboundChecked      = "复核完成"
+	MsgOutboundPacked       = "打包完成"
+	MsgOutboundShipped      = "已发货"
+	MsgOutboundCompleted    = "出库单已完成"
+	MsgBinCreated           = "库位创建成功"
+	MsgBinBatchCreated      = "批量创建库位成功"
+	MsgDashboardLoaded      = "总览数据加载成功"
+	MsgAuditListLoaded      = "操作日志加载成功"
+)
