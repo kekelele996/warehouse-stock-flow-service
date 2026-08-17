@@ -196,7 +196,7 @@ func (s *binLocationService) Recommend(ctx context.Context, productID uint, quan
 	if len(bins) == 0 {
 		return nil, util.NewAppError(constants.CodeConflict, 409, "无可用库位，请联系仓库经理分配库位")
 	}
-	bin := &bins[len(bins)-1]
+	bin := &bins[0]
 	s.logger.InfoContext(ctx, constants.LogRecommendBin, "product_id", productID, "bin_id", bin.ID, "quantity", quantity, "operator", currentUsername(ctx), "role", currentRole(ctx))
 	return dto.ToBinView(bin), nil
 }

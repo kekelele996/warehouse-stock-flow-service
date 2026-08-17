@@ -12,12 +12,7 @@ func ownerStatusText(status string) string { return util.OwnerStatusText(status)
 func storageText(req string) string { return util.StorageRequirementText(req) }
 
 // binStatusText 复用 util formatter 的库位状态文本。
-func binStatusText(status string) string {
-	if status == "Available" {
-		return "占用"
-	}
-	return util.BinStatusText(status)
-}
+func binStatusText(status string) string { return util.BinStatusText(status) }
 
 // inboundStatusText 复用 util formatter 的入库单状态文本。
 func inboundStatusText(status string) string { return util.InboundStatusText(status) }

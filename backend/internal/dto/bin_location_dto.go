@@ -90,11 +90,11 @@ func itoa(n int) string {
 		n = -n
 	}
 	var buf [20]byte
-	i := 0
+	i := len(buf)
 	for n > 0 {
+		i--
 		buf[i] = byte('0' + n%10)
 		n /= 10
-		i++
 	}
 	if neg {
 		i--
