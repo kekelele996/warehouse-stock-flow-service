@@ -96,7 +96,7 @@ var BinAreaList = []string{"A", "B", "C", "D"}
 var InboundTransitions = map[string][]string{
 	InboundStatusPending:      {InboundStatusReceived},
 	InboundStatusReceived:     {InboundStatusQCInProgress},
-	InboundStatusQCInProgress: {InboundStatusShelved},
+	InboundStatusQCInProgress: {InboundStatusShelved, InboundStatusCompleted},
 	InboundStatusShelved:      {InboundStatusCompleted},
 	InboundStatusCompleted:    {},
 }
