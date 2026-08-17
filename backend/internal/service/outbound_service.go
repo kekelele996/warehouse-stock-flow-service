@@ -115,9 +115,6 @@ func (s *outboundService) Create(ctx context.Context, req *dto.OutboundCreateReq
 }
 
 func (s *outboundService) List(ctx context.Context, query dto.OutboundQuery, page, pageSize int) ([]dto.OutboundOrderView, int64, error) {
-	if claims, ok := util.CurrentUser(ctx); ok && claims.Role == constants.RoleOwner && claims.OwnerID != nil {
-		query.OwnerID = *claims.OwnerID
-	}
 	filter := repository.OutboundFilter{Status: query.Status, OwnerID: query.OwnerID, Keyword: query.Keyword, Page: page, PageSize: pageSize}
 	orders, total, err := s.outboundRepo.List(ctx, filter)
 	if err != nil {

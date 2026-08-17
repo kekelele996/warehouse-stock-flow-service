@@ -12,7 +12,6 @@ import (
 	"github.com/wmsflow/wmsflow/internal/dto"
 	"github.com/wmsflow/wmsflow/internal/model"
 	"github.com/wmsflow/wmsflow/internal/repository"
-	"github.com/wmsflow/wmsflow/internal/util"
 )
 
 // InventoryService 库存服务：出入库共享库存增减与库位占用率重算。
@@ -152,9 +151,6 @@ func (s *inventoryService) recalcBinOccupancy(ctx context.Context, tx *gorm.DB, 
 }
 
 func (s *inventoryService) List(ctx context.Context, query dto.InventoryQuery, page, pageSize int) ([]dto.InventoryView, int64, error) {
-	if claims, ok := util.CurrentUser(ctx); ok && claims.Role == constants.RoleOwner && claims.OwnerID != nil {
-		query.OwnerID = *claims.OwnerID
-	}
 	filter := repository.InventoryFilter{
 		OwnerID:       query.OwnerID,
 		ProductID:     query.ProductID,
