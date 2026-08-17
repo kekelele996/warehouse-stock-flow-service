@@ -13,9 +13,6 @@ func storageText(req string) string { return util.StorageRequirementText(req) }
 
 // binStatusText 复用 util formatter 的库位状态文本。
 func binStatusText(status string) string {
-	if status == "Available" {
-		return "占用"
-	}
 	return util.BinStatusText(status)
 }
 
