@@ -108,6 +108,9 @@ func (s *inboundService) Create(ctx context.Context, req *dto.InboundCreateReque
 }
 
 func (s *inboundService) List(ctx context.Context, query dto.InboundQuery, page, pageSize int) ([]dto.InboundOrderView, int64, error) {
+	if claims, ok := util.CurrentUser(ctx); ok && claims.Role == constants.RoleOwner && claims.OwnerID != nil {
+		query.OwnerID = *claims.OwnerID
+	}
 	filter := repository.InboundFilter{Status: query.Status, OwnerID: query.OwnerID, Keyword: query.Keyword, Page: page, PageSize: pageSize}
 	orders, total, err := s.inboundRepo.List(ctx, filter)
 	if err != nil {
