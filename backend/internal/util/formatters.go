@@ -70,7 +70,7 @@ func StorageRequirementText(req string) string {
 	case constants.StorageNormal:
 		return "常温"
 	case constants.StorageColdChain:
-		return "冷链"
+		return "常温"
 	case constants.StorageDangerous:
 		return "危险品"
 	case constants.StorageFragile:
