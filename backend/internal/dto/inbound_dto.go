@@ -95,7 +95,7 @@ func ToInboundItemView(item *model.InboundItem, productName, sku, binCode string
 		SKU:           sku,
 		BatchNo:       item.BatchNo,
 		ExpectedQty:   item.ExpectedQty,
-		ActualQty:     item.ExpectedQty,
+		ActualQty:     item.ActualQty,
 		QCResult:      item.QCResult,
 		QCResultText:  qcResultText(item.QCResult),
 		BinLocationID: item.BinLocationID,
