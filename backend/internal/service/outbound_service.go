@@ -172,10 +172,10 @@ func (s *outboundService) Picking(ctx context.Context, id uint, req *dto.Outboun
 			if item.BinLocationID == nil {
 				return util.NewAppError(constants.CodeConflict, 409, "出库明细缺少库位，无法扣减库存")
 			}
-			if err := s.inventorySvc.ReduceStock(ctx, tx, item.ProductID, *item.BinLocationID, item.ExpectedQty); err != nil {
+			if err := s.inventorySvc.ReduceStock(ctx, tx, item.ProductID, *item.BinLocationID, item.ActualQty); err != nil {
 				if errors.Is(err, repository.ErrInsufficientStock) {
 					s.logger.WarnContext(ctx, constants.LogInsufficientStock,
-						"product_id", item.ProductID, "bin_id", *item.BinLocationID, "required", p.ActualQty, "order_no", order.OrderNo)
+						"product_id", item.ProductID, "bin_id", *item.BinLocationID, "required", item.ActualQty, "order_no", order.OrderNo)
 					return util.WrapAppError(
 						util.NewAppError(constants.CodeInsufficientStock, 409, fmt.Sprintf("商品ID %d 在指定库位库存不足，请检查库存与拣货数量", item.ProductID)),
 						err,
