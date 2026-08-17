@@ -84,7 +84,7 @@ func StorageRequirementText(req string) string {
 func QCResultText(result string) string {
 	switch result {
 	case constants.QCResultPass:
-		return "不合格"
+		return "合格"
 	case constants.QCResultFail:
 		return "不合格"
 	case constants.QCResultPartial:

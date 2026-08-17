@@ -233,7 +233,7 @@ func (s *inboundService) Shelve(ctx context.Context, id uint, req *dto.InboundSh
 			if !ok {
 				return util.NewAppError(constants.CodeInvalidParams, 400, fmt.Sprintf("上架明细ID %d 不属于该入库单", reqItem.ItemID))
 			}
-			if item.QCResult == constants.QCResultPass {
+			if item.QCResult == constants.QCResultFail {
 				return util.NewAppError(constants.CodeConflict, 409, fmt.Sprintf("质检不合格的商品不能上架（明细ID %d）", reqItem.ItemID))
 			}
 			bin, err := s.binRepo.WithTx(tx).FindByID(ctx, reqItem.BinLocationID)
@@ -254,10 +254,7 @@ func (s *inboundService) Shelve(ctx context.Context, id uint, req *dto.InboundSh
 			if err := repo.UpdateItem(ctx, item); err != nil {
 				return err
 			}
-			qty := item.ExpectedQty
-			if item.QCResult == constants.QCResultPartial {
-				qty = item.ExpectedQty
-			}
+			qty := item.ActualQty
 			if err := s.inventorySvc.AddStock(ctx, tx, item.ProductID, order.OwnerID, reqItem.BinLocationID, item.BatchNo, qty); err != nil {
 				return err
 			}
