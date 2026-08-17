@@ -342,8 +342,10 @@ func (s *inboundService) checkOwnerScope(ctx context.Context, ownerID uint) erro
 func (s *inboundService) toView(ctx context.Context, order *model.InboundOrder) *dto.InboundOrderView {
 	ownerName, _ := s.ownerName(ctx, order.OwnerID)
 	qcName, keeperName := "", ""
-	if u, err := s.userRepo.FindByID(ctx, *order.QCInspectorID); err == nil {
-		qcName = u.Name
+	if order.QCInspectorID != nil {
+		if u, err := s.userRepo.FindByID(ctx, *order.QCInspectorID); err == nil {
+			qcName = u.Name
+		}
 	}
 	if order.KeeperID != nil {
 		if u, err := s.userRepo.FindByID(ctx, *order.KeeperID); err == nil {
