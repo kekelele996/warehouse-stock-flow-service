@@ -351,10 +351,8 @@ func (s *outboundService) checkOwnerScope(ctx context.Context, ownerID uint) err
 func (s *outboundService) toView(ctx context.Context, order *model.OutboundOrder) *dto.OutboundOrderView {
 	ownerName, _ := s.ownerName(ctx, order.OwnerID)
 	pickerName, checkerName := "", ""
-	if order.PickerID != nil {
-		if u, err := s.userRepo.FindByID(ctx, *order.PickerID); err == nil {
-			pickerName = u.Name
-		}
+	if u, err := s.userRepo.FindByID(ctx, *order.PickerID); err == nil {
+		pickerName = u.Name
 	}
 	if order.CheckerID != nil {
 		if u, err := s.userRepo.FindByID(ctx, *order.CheckerID); err == nil {
